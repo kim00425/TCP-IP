@@ -40,10 +40,9 @@
 
 6. 상세설명
 
- 설명하기 앞서 이 프로그램은 banu.com 사이트의 epoll 예제를 참고하여 만든 것이다.
+ 설명하기 앞서 이 프로그램은 [banu.com](https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/epoll-example.c) 사이트의 epoll 예제를 참고하여 만든 것이다.
  
  이 프로그램은 동기/비봉쇄 모델을 가지는 Epoll을 사용하였고, 장점으로는 멀티프로세스처럼 IPC를 구현 할 필요없고 멀티스레드처럼 코딩할 시 발생하는
- 
  가독성 문제를 해결해주는 것이고 select함수의 비효율성을 극복하는 장점을 가지고 있다.
  
  Epoll은 FreeBSD의 kqueue(Mac OS),Window의 IOCP(Window)와 똑같은 함수이다.
@@ -51,7 +50,6 @@
  먼저 풀(epoll_create1)을 만들고 listen 대기열로 들어왔다는 정보를 먼저 풀(epollfd)에 추가(epoll_ctl)를 하고,루프문을 통해 풀로 들어온
  
  정보를 체크하면서 새로 접속한 클라이언트에 대해서는 풀 추가(EPOLL_CTL_ADD)를 하고 기존 클라이언트의 정보가 바뀐 것을 확인 했을때는 read를 통해
- 
  성공시 메세지를 읽고 그것을 다시 epollfd에 있는 접속 된 클라이언트들에 다시 write해서 보낸다.
  
  여기서 banu.com 소스부분과 다른 점은 클라이언트가 접속 시에 이름을 묻고 다시 그 정보를 받아와서 epoll_ctl을 통해 수정을 한다는 점.
@@ -68,4 +66,9 @@
 8. 향후 방향
 
  가) 이 epoll을 발전시켜서 Texas holedem에 접목하여 다중접속 클라이언트 포커게임을 만들기 위함.
+
+9. 참조
+ 
+ 
+
  
